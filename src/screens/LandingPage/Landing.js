@@ -18,8 +18,8 @@ const LandingPage = () => {
       <View style={styles.container}>
         <Text style={styles.welcomeText}>Welcome</Text>
         <Pressable style={styles.button} onPress={navigateToLogin}>
-          <Text style={styles.buttonText}>Login</Text>
-        </Pressable>
+          <Text style={styles.buttonText}>Sign In</Text>
+        </Pressable> 
       </View>
     </ImageBackground>
   );

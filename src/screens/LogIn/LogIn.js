@@ -43,7 +43,7 @@ const LogIn = () => {
     >
       <View style={styles.container}>
         <Text style={styles.title}>
-          Welcome to Global Defense Initiative
+          Welcome Back!
         </Text>
 
         <Input
@@ -77,7 +77,7 @@ const LogIn = () => {
           onPress={onForgotPasswordPressed}
         />
         <Button
-          text="Don't have an account? Resgister here."
+          text="Don't have an account? Register here."
           onPress={onDontHaveAccountPressed}
           type="TERTIARY"
         />
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 30,
-    fontWeight: "350",
+    fontWeight: "400",
     color: "white",
   },
 
