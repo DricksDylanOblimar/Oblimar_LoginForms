@@ -2,7 +2,7 @@ import {
   View,
   Text,
   StyleSheet,
-  Image,
+  ImageBackground,
   useWindowDimensions,
 } from "react-native";
 import React, { useState } from "react";
@@ -36,50 +36,53 @@ const LogIn = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <Image
-        style={[styles.logo, { height: height * 0.3 }]}
-        source={Logo}
-        resizeMode="contain"
-      />
-      <Text style={styles.title}>Log in your account</Text>
+    <ImageBackground
+      source={Logo}
+      style={styles.backgroundImage}
+      resizeMode="cover"
+    >
+      <View style={styles.container}>
+        <Text style={styles.title}>
+          Welcome to Global Defense Initiative
+        </Text>
 
-      <Input
-        name="username"
-        placeholder="Username"
-        control={control}
-        rules={{ required: "Username is required" }}
-      />
-      <Input
-        name="password"
-        placeholder="Password"
-        control={control}
-        secureTextEntry
-        rules={{
-          required: "Password is required",
-          minLength: {
-            value: 8,
-            message: "Password should be at least 8 characters long",
-          },
-        }}
-      />
+        <Input
+          name="username"
+          placeholder="Username"
+          control={control}
+          rules={{ required: "Username is required" }}
+        />
+        <Input
+          name="password"
+          placeholder="Password"
+          control={control}
+          secureTextEntry
+          rules={{
+            required: "Password is required",
+            minLength: {
+              value: 8,
+              message: "Password should be at least 8 characters long",
+            },
+          }}
+        />
 
-      <Button
-        text="Log In"
-        type="PRIMARY"
-        onPress={handleSubmit(onLoginPress)}
-      />
-      <Button
-        text="Forgot Password?"
-        type="TERTIARY"
-        onPress={onForgotPasswordPressed}
-      />
-      <Button
-        text="Don't have an account? Resgister here."
-        onPress={onDontHaveAccountPressed}
-        type="TERTIARY"
-      />
-    </View>
+        <Button
+          text="Log In"
+          type="PRIMARY"
+          onPress={handleSubmit(onLoginPress)}
+        />
+        <Button
+          text="Forgot Password?"
+          type="TERTIARY"
+          onPress={onForgotPasswordPressed}
+        />
+        <Button
+          text="Don't have an account? Resgister here."
+          onPress={onDontHaveAccountPressed}
+          type="TERTIARY"
+        />
+      </View>
+    </ImageBackground>
   );
 };
 
@@ -90,19 +93,19 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     padding: 20,
-    backgroundColor: "#2A2F4F",
     borderRadius: 5,
   },
   title: {
-    fontSize: 25,
-    fontWeight: "300",
+    fontSize: 30,
+    fontWeight: "350",
     color: "white",
   },
 
-  logo: {
-    width: "70%",
-    maxWidth: 300,
-    height: 100,
+  backgroundImage: {
+    flex: 1,
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
 
