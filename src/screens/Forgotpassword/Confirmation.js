@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
   },
   text: {
     marginVertical: 10,
-    color: "#142850",
+    color: "white",
   },
 });
 
