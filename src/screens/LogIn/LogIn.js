@@ -2,8 +2,8 @@ import {
   View,
   Text,
   StyleSheet,
-  useWindowDimensions,
   ImageBackground,
+  useWindowDimensions,
 } from "react-native";
 import React, { useState } from "react";
 import Input from "../../components/Inputs/Input";
@@ -13,22 +13,27 @@ import { useNavigation } from "@react-navigation/native";
 import { useForm } from "react-hook-form";
 
 const LogIn = () => {
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
   const { height } = useWindowDimensions();
   const navigation = useNavigation();
 
-  const { control, handleSubmit, watch } = useForm();
-
-  const pass = watch("password");
-
-  const onBackToLogin = () => {
-    navigation.navigate("Login");
+  const onLoginPress = (data) => {
+    console.log(data);
+    navigation.navigate("Home");
   };
 
-  const onRegisterPressed = () => {
-    navigation.navigate("Login");
+  const onForgotPasswordPressed = () => {
+    navigation.navigate("Forgot Password");
   };
 
-  const EMAIL_REGEX = /[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+\.[a-zA-Z]{2,4}/;
+  const onDontHaveAccountPressed = () => {
+    navigation.navigate("Register");
+  };
 
   return (
     <ImageBackground
@@ -37,33 +42,15 @@ const LogIn = () => {
       resizeMode="cover"
     >
       <View style={styles.container}>
-        <Text style={styles.title}>Create an account</Text>
+        <Text style={styles.title}>
+          Welcome to Global Defense Initiative
+        </Text>
 
         <Input
           name="username"
           placeholder="Username"
           control={control}
-          rules={{
-            required: "Username is required",
-            minLength: {
-              value: 4,
-              message: "Username should be at least 4 characters minimum",
-            },
-            maxLength: {
-              value: 24,
-              message: "Username should be only 24 characters long",
-            },
-          }}
-        />
-
-        <Input
-          name="email"
-          placeholder="Email"
-          control={control}
-          rules={{
-            required: "Email is required",
-            pattern: { value: EMAIL_REGEX, message: "Email is invalid" },
-          }}
+          rules={{ required: "Username is required" }}
         />
         <Input
           name="password"
@@ -78,24 +65,20 @@ const LogIn = () => {
             },
           }}
         />
-        <Input
-          name="confirm-password"
-          placeholder="Confirm Password"
-          control={control}
-          secureTextEntry
-          rules={{
-            validate: (value) => value === pass || "Password do not match",
-          }}
-        />
 
         <Button
-          text="Register"
+          text="Log In"
           type="PRIMARY"
-          onPress={handleSubmit(onRegisterPressed)}
+          onPress={handleSubmit(onLoginPress)}
         />
         <Button
-          text="Already have an account? Log in here."
-          onPress={onBackToLogin}
+          text="Forgot Password?"
+          type="TERTIARY"
+          onPress={onForgotPasswordPressed}
+        />
+        <Button
+          text="Don't have an account? Resgister here."
+          onPress={onDontHaveAccountPressed}
           type="TERTIARY"
         />
       </View>
@@ -110,10 +93,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     padding: 20,
+    borderRadius: 5,
   },
   title: {
-    fontSize: 25,
-    fontWeight: "300",
+    fontSize: 30,
+    fontWeight: "350",
     color: "white",
   },
 
